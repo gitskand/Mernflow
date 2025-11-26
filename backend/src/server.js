@@ -17,6 +17,16 @@ app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 
+import path from 'path';
+const __dirname = path.resolve();
+
+// serve static frontend files
+app.use(express.static(path.join(__dirname, 'frontend-dist')));
+
+// for client-side routing, return index.html for unknown GET requests
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend-dist', 'index.html'));
+});
 
 const allowedOrigins = (process.env.CORS_ORIGIN || "http://localhost:5173,http://localhost:5174")
   .split(",")
@@ -40,6 +50,16 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+// right after app and middleware setup
+app.get('/', (req, res) => {
+  res.send('Task Manager Backend — server is running. Use the API endpoints.');
+});
+// right after app and middleware setup
+app.get('/', (req, res) => {
+  res.send('Task Manager Backend — server is running. Use the API endpoints.');
+});
+
 
 // Rate limiter
 const limiter = rateLimit({ windowMs: 60 * 1000, max: 120 });
