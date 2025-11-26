@@ -86,11 +86,18 @@ const taskRoutes = require('./routes/tasks');
 
 const app = express();
 
+
 // 1️⃣ CORS FIRST
 app.use(cors({
   origin: 'https://dynamic-muffin-0e080d.netlify.app',
   credentials: true
 }));
+
+
+// Redirect root to Netlify frontend
+app.get('/', (req, res) => {
+  res.redirect('https://dynamic-muffin-0e080d.netlify.app/');
+});
 
 // 2️⃣ Security + parsing
 app.use(helmet());
