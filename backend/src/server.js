@@ -48,6 +48,17 @@ app.use(limiter);
 // DB connect
 connectDB();
 
+const FRONTEND_ORIGIN = 'https://dynamic-muffin-0e080d.netlify.app';
+
+app.use(cors({
+  origin: FRONTEND_ORIGIN,
+  credentials: true, // if you use cookies or auth that requires credentials
+}));
+
+// bad: app.set('trust proxy', true)
+app.set('trust proxy', 'loopback'); // or false
+
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
