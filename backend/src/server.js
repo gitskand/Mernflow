@@ -16,14 +16,14 @@ const app = express();
 
 
 app.use(cors({
-  origin: 'https://dynamic-muffin-0e080d.netlify.app',
+  origin: '',
   credentials: true
 }));
 
 
 
 app.get('/', (req, res) => {
-  res.redirect('https://dynamic-muffin-0e080d.netlify.app/');
+  res.redirect('https://skand-task-manager.netlify.app/');
 });
 
 
@@ -39,7 +39,7 @@ app.set('trust proxy', 'loopback');
 const defaultOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
-  'https://dynamic-muffin-0e080d.netlify.app'
+  'https://skand-task-manager.netlify.app/'
 ];
 const envOrigins = (process.env.CORS_ORIGIN || '')
   .split(',')
