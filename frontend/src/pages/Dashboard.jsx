@@ -131,22 +131,7 @@ export default function Dashboard() {
           <Box sx={{ p: 4 }}>No tasks found.</Box>
         )}
 
-        {/* {tasks.map((t) => (
-          <Grid item xs={12} md={6} key={t._id}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">{t.title}</Typography>
-                <Typography variant="body2" sx={{ whiteSpace: 'pre-wrap' }}>{t.description}</Typography>
-                <Typography variant="caption">{t.status} • {new Date(t.createdAt).toLocaleString()}</Typography>
-                <Typography variant="caption" display="block">By: {t.createdBy ? t.createdBy.name : 'Unknown'}</Typography>
-                <Box mt={1}>
-                  <IconButton component={Link} to={'/task/' + t._id}><EditIcon /></IconButton>
-                  {user?.role === 'admin' && <IconButton onClick={() => removeTask(t._id)}><DeleteIcon /></IconButton>}
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))} */}
+  
 
         {tasks.map((t) => {
   const isExpanded = expandedTaskId === t._id;

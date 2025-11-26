@@ -14,7 +14,7 @@ const signRefresh = (user) => {
   return { token, expiresAt };
 };
 
-// parse simple durations like '7d' or '15m' to ms
+
 function parseDuration(str) {
   if (!str) return 0;
   if (str.endsWith('d')) return parseInt(str) * 24*60*60*1000;

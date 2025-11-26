@@ -40,7 +40,7 @@ API.interceptors.response.use(
       if (!isRefreshing) {
         isRefreshing = true;
         try {
-          const rv = await API.post('/auth/refresh'); // cookie-based refresh
+          const rv = await API.post('/auth/refresh'); 
           const newToken = rv.data?.accessToken;
           if (newToken) saveToken(newToken);
           isRefreshing = false;
