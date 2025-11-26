@@ -86,12 +86,17 @@ const taskRoutes = require('./routes/tasks');
 
 const app = express();
 
-// --------------------------
-// Security & parsing
-// --------------------------
+// 1️⃣ CORS FIRST
+app.use(cors({
+  origin: 'https://dynamic-muffin-0e080d.netlify.app',
+  credentials: true
+}));
+
+// 2️⃣ Security + parsing
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
+
 
 // set a safe trust proxy value (don't set to true)
 app.set('trust proxy', 'loopback');

@@ -44,6 +44,22 @@ exports.signup = async (req, res) => {
   }
 };
 
+// inside login controller after verifying user + password
+const token = generateJwtToken(user._id);
+
+res.cookie('token', token, {
+  httpOnly: true,
+  secure: true,        // HTTPS required (Render = yes)
+  sameSite: 'none',    // required for cross-site cookies
+  maxAge: 24 * 60 * 60 * 1000 // 1 day
+});
+
+return res.json({
+  message: "Login successful",
+  user: { id: user._id, email: user.email }
+});
+
+
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
